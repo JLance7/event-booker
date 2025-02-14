@@ -1,7 +1,10 @@
 package main
 
 import (
+	"api/db"
+	"api/routes"
 	"fmt"
+	"github.com/gin-gonic/gin"
 )
 
 /*
@@ -16,7 +19,10 @@ import (
 	DELETE /events/<id>/register  Cancel registration (Auth required)
 */
 
-func main(){
+func main() {
 	fmt.Println("REST API!")
-	
+	server := gin.Default()
+	db.InitDB()
+	routes.RegisterRoutes(server)
+	server.Run("localhost:8080")
 }
